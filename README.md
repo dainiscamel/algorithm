@@ -1,2 +1,4 @@
-# algorithm
-practice algorithm
+# 자료구조 기초
+
+- 탐색(Search): 많은 양의 데이터 중에서 원하는 데이터를 찾는 과정.
+- 자료구조(Data Structure): 데이터를 표현 관리하고 처리하기 위한 구조.
