@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){
+                let answer=0;
+                m=arr.length;
+                n=arr[0].length;
+                // i,j = 멘토, 멘티가 될  수 있는 경우의 수
+                for(let i=1;i<=n;i++){
+                  for(let j=1;j<=n;j++){
+                    let count=0;
+                    // k= 행
+                    for(let k=0;k<m;k++){
+                      let mentor=mentee=0 
+                      // l=학생수
+                      for(let l=0;l<n;l++){
+                        //등수
+                        if(arr[k][l] === i) mentor=l;
+                        if(arr[k][l] === j) mentee=l;
+                      }
+                      if(mentor>mentee)count++;
+                    }
+                    if(count === m)answer++;
+                  }
+                }
+                return answer;
+            }
+            
+            let arr=[[3, 4, 1, 2], [4, 3, 2, 1]];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
