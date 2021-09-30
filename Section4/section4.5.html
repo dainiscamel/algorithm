@@ -7,7 +7,19 @@
         <script>
             function solution(n, k, card){
                 let answer;
-                
+                let sum = [];
+                //1번째 카드
+                for(let i=0; i<n; i++){
+                  //2번째 카드
+                  for(let j=i+1; j<n; j++){
+                    // 3번째 카드
+                        for(let k=j+1; k<n; k++){
+                          sum.push(card[i] + card[j]+card[k]);
+                        }
+                    }
+                }
+                let sortedArray = sum.sort((a,b)=> b-a);
+                answer= sortedArray[k-1];
                 return answer;
             }
             
