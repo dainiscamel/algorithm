@@ -8,6 +8,8 @@
             function solution(n, k, card){
                 let answer;
                 let sum = [];
+                // 중복을 제거하는 자료구조.
+                // let sum = new Set();
                 //1번째 카드
                 for(let i=0; i<n; i++){
                   //2번째 카드
@@ -15,6 +17,8 @@
                     // 3번째 카드
                         for(let k=j+1; k<n; k++){
                           sum.push(card[i] + card[j]+card[k]);
+                          // Set()에 자료를 추가하는 메소드.
+                          //sum.add(card[i] + card[j]+card[k]);
                         }
                     }
                 }
