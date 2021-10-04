@@ -27,6 +27,7 @@
     </body>
 </html>
 
+
 <!-- <html>
     <head>
         <meta charset="UTF-8">
@@ -34,8 +35,12 @@
     </head>
     <body>
         <script>
+            // 투포인터 알고리즘 활용 
+            // 배열을 '오름차순으로 정렬'한 후, p1와p2를 비교하여 같지 않으면 작은 같을 증가 시킨다.
             function solution(arr1, arr2){
                 let answer=[];
+                arr1.sort();
+                arr2.sort();
                 let p1=p2=0;
                 while(p1<arr1.length && p2<arr2.length){
                     if(arr1[p1]==arr2[p2]){
@@ -44,8 +49,7 @@
                     }
                     else if(arr1[p1]<arr2[p2]) p1++;
                     else p2++;
-                }    
-                answer.sort((a,b)=>a-b)          
+                }              
                 return answer;
             }
             

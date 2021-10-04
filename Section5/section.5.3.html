@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            // 1.현재 부분합이 M 이상이면 start ++
+            // 2. M 미만이면 end ++
+            // 3. 현재 부분합이 M과 같으면 결과 ++
+            // 4. 이 과정을 start ≤ end 인 동안 반복!  
+            function solution(m, arr){
+                let answer=p1=p2=sum=0; 
+                while(p1<=p2){
+                  if(sum >= m)sum -= arr[p1++];
+                  else if(p2 === arr.length) break;
+                  else sum += arr[p2++];
+
+                  if(sum == m) answer++;
+                }
+                return answer;
+            }
+            let a=[1, 2, 1, 3, 1, 1, 1, 2];
+            console.log(solution(6, a));
+        </script>
+    </body>
+</html>
+
+<!-- <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(m, arr){
+                let answer=0, lt=0, sum=0;
+                for(let rt=0; rt<arr.length; rt++){
+                    sum+=arr[rt];
+                    if(sum===m) answer++;
+                    while(sum>=m){
+                        sum-=arr[lt++];
+                        if(sum===m) answer++;       
+                    }
+                }        
+                return answer;
+            }
+            
+            let a=[1, 2, 1, 3, 1, 1, 1, 2];
+            console.log(solution(6, a));
+        </script>
+    </body>
+</html> -->
