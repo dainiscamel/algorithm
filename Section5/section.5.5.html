@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(k, arr){
+                let answer=sum=0;
+                let window_start=0;
+
+                for(let window_end=0; window_end<arr.length; window_end++){
+                  sum += arr[window_end]
+                  if(window_end >= (k-1)){                    
+                    answer = Math.max(answer, sum)
+                    sum -= arr[window_start]  // 슬라이드 윈도우 범위를 벗어난 요소를 합계에서 제거
+                    window_start += 1  // 슬라이드 윈도우 시작 인덱스 증가
+                  }
+                  
+                }
+
+                            
+                return answer;
+            }
+            
+            let a=[12, 15, 11, 20, 25, 10, 20, 19, 13, 15];
+            console.log(solution(3, a));
+        </script>
+    </body>
+</html>
+
+<!-- <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(k, arr){
+                let answer, sum=0;
+                for(let i=0; i<k; i++) sum+=arr[i];
+                answer=sum;
+                for(let i=k; i<arr.length; i++){
+                    sum+=(arr[i]-arr[i-k]);
+                    answer=Math.max(answer, sum);
+                }                    
+                return answer;
+            }
+            
+            let a=[12, 15, 11, 20, 25, 10, 20, 19, 13, 15];
+            console.log(solution(3, a));
+        </script>
+    </body>
+</html> -->
