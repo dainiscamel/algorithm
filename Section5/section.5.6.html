@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(vote) {
+        let answer;
+        let obj = new Map();
+        let max = 0;
+        for (let key of vote) {
+          if (obj.has(key)) obj.set(key, obj.get(key) + 1);
+          else obj.set(key, 1);
+        }
+        for (let [key, val] of obj) {
+          if (val > max) {
+            max = val;
+            answer = key;
+          }
+        }
+        return answer;
+      }
+
+      let str = "BACBACCACCBDEDE";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
