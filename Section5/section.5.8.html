@@ -5,76 +5,80 @@
   </head>
   <body>
     <script>
-      function compareMaps(map1, map2) {
-        if (map1.size !== map2.size) return false;
-        for (let [key, val] of map1) {
-          if (!map2.has(key) || map2.get(key) !== val) return false;
-        }
-        return true;
-      }
-
-      function solution(s, t) {
-        let answer = 0;
-        let sum = 0;
-        tH = new Map();
-        sH = new Map();
-
-        //t문자열
-        for (let i of t) {
-          tH.has(i) ? tH.set(i, tH.get(i) + 1) : tH.set(i, 1);
-        }
-        let len = t.length - 1;
-        for (let i = 0; i < len; i++) {
-          sH.has(s[i]) ? sH.set(s[i], sH.get(i) + 1) : sH.set(s[i], 1);
-        }
-
-        console.log(tH, sH);
-        let lt = 0;
-        for (let rt = len; rt < s.length; rt++) {
-          sH.has(s[rt]) ? sH.set(s[rt], sH.get(s[rt]) + 1) : sH.set(s[rt], 1);
-          if (compareMaps(sH, tH)) answer++;
-          sH.set(s[lt], sH.get(s[lt]) - 1);
-          if (sH.get(s[lt]) === 0) sH.delete(s[lt]);
-          lt++;
-        }
-
-        console.log(tH, sH);
-
-        return answer;
-      }
-
-      let a = "bacaAacba";
-      let b = "abc";
-      console.log(solution(a, b));
-
-      // solution
+      // function compareMaps(map1, map2) {
+      //   if (map1.size !== map2.size) return false;
+      //   for (let [key, val] of map1) {
+      //     if (!map2.has(key) || map2.get(key) !== val) return false;
+      //   }
+      //   return true;
+      // }
 
       // function solution(s, t) {
       //   let answer = 0;
-      //   let sH = new Map();
-      //   for (let x of t) {
-      //     sH.set(x, (sH.get(x) || 0) - 1);
+      //   let sum = 0;
+      //   tH = new Map();
+      //   sH = new Map();
+
+      //   //t문자열
+      //   for (let i of t) {
+      //     tH.has(i) ? tH.set(i, tH.get(i) + 1) : tH.set(i, 1);
       //   }
-      //   console.log(sH);
       //   let len = t.length - 1;
       //   for (let i = 0; i < len; i++) {
-      //     sH.set(s[i], (sH.get(s[i]) || 0) + 1);
-      //     if (sH.get(s[i]) === 0) sH.delete(s[i]);
-      //     console.log(sH);
+      //     sH.has(s[i]) ? sH.set(s[i], sH.get(i) + 1) : sH.set(s[i], 1);
       //   }
+
+      //   // console.log(tH, sH);
 
       //   let lt = 0;
       //   for (let rt = len; rt < s.length; rt++) {
-      //     sH.set(s[rt], (sH.get(s[rt]) || 0) + 1);
-      //     if (sH.get(s[rt]) === 0) sH.delete(s[rt]);
-      //     if (sH.size === 0) answer++;
-      //     sH.set(s[lt], (sH.get(s[lt]) || 0) - 1);
+      //     sH.has(s[rt]) ? sH.set(s[rt], sH.get(s[rt]) + 1) : sH.set(s[rt], 1);
+      //     // size와 글자 수 일치하는 지 체크.
+      //     if (compareMaps(sH, tH)) answer++;
+      //     //lt증가, sH에서 s[lt]에 해당 하는 문자 감소.
+      //     sH.set(s[lt], sH.get(s[lt]) - 1);
       //     if (sH.get(s[lt]) === 0) sH.delete(s[lt]);
       //     lt++;
       //   }
+
       //   return answer;
       // }
-      // console.log(solution("bacaAacbcba", "abc"));
+
+      // let a = "bacaAacba";
+      // let b = "abc";
+      // console.log(solution(a, b));
+
+      // solution
+
+      function solution(s, t) {
+        let answer = 0;
+        let sH = new Map();
+        for (let x of t) {
+          sH.set(x, (sH.get(x) || 0) - 1);
+        }
+
+        let len = t.length - 1;
+        for (let i = 0; i < len; i++) {
+          sH.set(s[i], (sH.get(s[i]) || 0) + 1);
+          if (sH.get(s[i]) === 0) sH.delete(s[i]);
+        }
+
+        console.log(sH);
+
+        let lt = 0;
+        for (let rt = len; rt < s.length; rt++) {
+          sH.set(s[rt], (sH.get(s[rt]) || 0) + 1);
+          // s[rt]가 존재 하면 sH에서 제거
+          if (sH.get(s[rt]) === 0) sH.delete(s[rt]);
+          // t에 해당하는 글자가 sH에 모두 존재 하면 size = 0
+          if (sH.size === 0) answer++;
+          sH.set(s[lt], (sH.get(s[lt]) || 0) - 1);
+          if (sH.get(s[lt]) === 0) sH.delete(s[lt]);
+          lt++;
+        }
+        return answer;
+      }
+      console.log(solution("bacaAacbcba", "abc"));
     </script>
   </body>
 </html>

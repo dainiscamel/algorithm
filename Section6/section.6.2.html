@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer;
+        let stack = [];
+        for (let i of s) {
+          if (i === ")") {
+            // 괄호안에 해당하는 문자 빼기
+            while (stack.pop() !== "(");
+          } else {
+            console.log(i);
+            stack.push(i);
+          }
+        }
+        answer = stack.join("");
+        return answer;
+      }
+
+      let str = "(A(BC)D)EF(G(H)(IJ)K)LM(N)";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
