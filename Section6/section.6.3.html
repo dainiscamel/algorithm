@@ -13,13 +13,16 @@
           for (let j = 0; j < board.length; j++) {
             //인형이 있으면
             if (board[j][moves[i] - 1] !== 0) {
+              // 인형을 꺼낸 뒤
               let tmp = board[j][moves[i] - 1];
+              // 꺼낸 위치를 0으로 빈공간 만듦.
               board[j][moves[i] - 1] = 0;
               // 동일한 인형이 스택에 들어있으면 pop()
               if (tmp === stack[stack.length - 1]) {
                 stack.pop();
                 answer += 2;
               } else stack.push(tmp);
+              // 같은 열의 인형을 꺼냈으면 break
               break;
             }
           }
