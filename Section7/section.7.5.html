@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(size, arr) {
+        let answer = Array.from({ length: size }, () => 0);
+
+        arr.forEach((x) => {
+          let pos = -1;
+          // answer[i] 배열중 x와 동일한 숫자가 있으면 해당 위치 pos에 저장
+          for (let i = 0; i < size; i++) if (answer[i] === x) pos = i;
+          if (pos === -1) {
+            // 새로운 숫자가 들어오면 이전 숫자를 한칸씩 뒤로 이동.
+            for (let i = size - 1; i >= 1; i--) {
+              answer[i] = answer[i - 1];
+            }
+          } else {
+            // 동일한 숫자가 위치한 자리에 앞에 숫자를 push
+            for (let i = pos; i >= 1; i--) {
+              answer[i] = answer[i - 1];
+            }
+          }
+          //가장 최근에 들어온 숫자를 배열 첫번 째에 위치 시킨다.
+          answer[0] = x;
+        });
+
+        return answer;
+      }
+
+      let arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
+      console.log(solution(5, arr));
+    </script>
+  </body>
+</html>
+
+<!-- <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(size, arr) {
+        let answer = [];
+        arr.forEach((x) => {
+          let pos = -1;
+          for (let i = 0; i < size; i++) if (x === answer[i]) pos = i;
+          if (pos === -1) {
+            answer.unshift(x);
+            if (answer.length > size) answer.pop();
+          } else {
+            answer.splice(pos, 1);
+            answer.unshift(x);
+          }
+        });
+
+        return answer;
+      }
+
+      let arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
+      console.log(solution(5, arr));
+    </script>
+  </body>
+</html> -->
