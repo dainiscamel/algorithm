@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function count(arr, mid) {
+        let cnt = 1,
+          dist = arr[0];
+        for (let i = 1; i < arr.length; i++) {
+          if (arr[i] - dist >= mid) {
+            cnt++;
+            // 그 사잇값은 mid보다 작으므로 arr[i] 좌표가 dist 기준이 됨.
+            dist = arr[i];
+          }
+        }
+        return cnt;
+
+        return cnt;
+      }
+      function solution(n, rooms) {
+        let answer = 0;
+        let lt, rt;
+        rooms.sort((a, b) => a - b);
+        lt = 1;
+        rt = rooms[rooms.length - 1];
+
+        while (lt <= rt) {
+          let mid = parseInt((lt + rt) / 2);
+
+          // 목표 마굿간 수보다 같거나 많이 나온경우,
+          if (count(rooms, mid) >= n) {
+            answer = mid;
+            // 수를 늘려 더 큰 값을 찾는다.
+            lt = mid + 1;
+          } else rt = mid - 1;
+        }
+        return answer;
+      }
+      let arr = [1, 2, 8, 4, 9];
+      console.log(solution(3, arr));
+    </script>
+  </body>
+</html>

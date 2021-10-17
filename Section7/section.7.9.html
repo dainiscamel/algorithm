@@ -7,9 +7,29 @@
     <script>
       function solution(times) {
         let answer = 0;
+        let sortedArr = [];
+
+        times.forEach((el) => {
+          sortedArr.push([el[0], "s"]);
+          sortedArr.push([el[1], "e"]);
+        });
+
+        sortedArr.sort((a, b) => {
+          //  시간이 동일한 경우 나가는 사람을 우선으로 정렬한다.
+          if (a[0] == b[0]) return a[1].charCodeAt() - b[1].charCodeAt();
+          else return a[0] - b[0];
+        });
+
+        let cnt = 0;
+        sortedArr.forEach((el) => {
+          if (el[1] === "s") cnt++;
+          else cnt--;
+          // 가장 많이 들어 온 값 check
+          answer = Math.max(answer, cnt);
+        });
+
         return answer;
       }
-
       let arr = [
         [14, 18],
         [12, 15],

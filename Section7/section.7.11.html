@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function count(s, m) {
+        let cnt = 1;
+        let sum = 0;
+        s.forEach((el) => {
+          if (sum + el > m) {
+            cnt++;
+            // 합(mid)을 초과하면 다시 el부터 기준이 되어 누적합 계산
+            sum = el;
+          } else sum += el; // 누적합
+        });
+
+        return cnt;
+      }
+      function solution(n, songs) {
+        let answer = 0;
+        let lt, rt;
+
+        lt = Math.max(...songs);
+        rt = songs.reduce((a, b) => a + b, 0);
+
+        while (lt <= rt) {
+          let mid = parseInt((lt + rt) / 2);
+
+          if (count(songs, mid) <= n) {
+            answer = mid;
+            rt = mid - 1;
+          } else lt = mid + 1;
+        }
+        return answer;
+      }
+      let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      console.log(solution(3, arr));
+    </script>
+  </body>
+</html>
