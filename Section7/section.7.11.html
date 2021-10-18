@@ -6,10 +6,12 @@
   <body>
     <script>
       function count(s, m) {
-        let cnt = 1;
+        let cnt = 1; // 최소 한장의 DVD 필요
         let sum = 0;
         s.forEach((el) => {
+          // 용량을 초과하면 (= 더이상 저장할 공간이 없음.)
           if (sum + el > m) {
+            // CD추가
             cnt++;
             // 합(mid)을 초과하면 다시 el부터 기준이 되어 누적합 계산
             sum = el;
@@ -28,8 +30,13 @@
         while (lt <= rt) {
           let mid = parseInt((lt + rt) / 2);
 
+          // 용량을 만들수 있는 경우에 수가 기준보다 작은경우
+          // 예를 들어 mid = 27, 1+2+3+4+5+6  & 7+8+9 두장의 CD를 만들수 있다.
+          // 2장의 CD를 만들 수 있다 = 3장의 CD로 나눌 수 있다.
+
           if (count(songs, mid) <= n) {
             answer = mid;
+            // 더 작은 용량을 찾는다.
             rt = mid - 1;
           } else lt = mid + 1;
         }
