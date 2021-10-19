@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let answer = [];
+        let chk = Array.from({ length: n + 1 }, () => 0); // 길이만 가지고 있는 유사배열객체
+        function DFS(v) {
+          if (v === n + 1) {
+            let tmp = "";
+            for (let i = 1; i <= n; i++) {
+              // 부분집합에 포함 하는 경우 만 저장.
+              if (chk[i] === 1) tmp += i + " ";
+            }
+            if (tmp.length > 1) answer.push(tmp.trim());
+          } else {
+            chk[v] = 1; // 포함
+            DFS(v + 1);
+            chk[v] = 0; // 마포함
+            DFS(v + 1);
+          }
+        }
+
+        DFS(1);
+        return answer;
+      }
+
+      console.log(solution(3));
+    </script>
+  </body>
+</html>
