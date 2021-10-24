@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, m) {
+        let answer = [];
+        let temp = Array.from({ length: m }, () => 0);
+        function DFS(L) {
+          if (L === m) {
+            // answer.push(temp);
+            answer.push(temp.slice()); // 복사해서 새로 생성. 배열안에 원소가 기본 데이터일때만 깊은 복사가 된다.
+          } else {
+            for (let i = 1; i <= n; i++) {
+              temp[L] = i;
+              DFS(L + 1);
+            }
+          }
+        }
+
+        DFS(0);
+        return answer;
+      }
+
+      console.log(solution(3, 2));
+    </script>
+  </body>
+</html>

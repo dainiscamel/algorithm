@@ -13,8 +13,8 @@
           if (L === n) {
             answer = Math.max(answer, sum);
           } else {
-            DFS(L + 1, sum + ps[L], time + pt[L]); // 포함
-            DFS(L + 1, sum, time); // 미포함
+            DFS(L + 1, sum + ps[L], time + pt[L]); // 문제를 푼다.
+            DFS(L + 1, sum, time); // 안푼다.
           }
         }
 
