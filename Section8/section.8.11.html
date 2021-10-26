@@ -9,9 +9,12 @@
         let answer;
         function DFS(n) {
           if (n === 1) return 1;
-          else return (answer = n * DFS(n - 1));
+          // else return (answer = n * DFS(n - 1));
+          else return n * DFS(n - 1);
         }
-        DFS(n);
+        // DFS(n);
+        // n = soluntion(n)의 매개 변수 n
+        answer = DFS(n);
         return answer;
       }
 
