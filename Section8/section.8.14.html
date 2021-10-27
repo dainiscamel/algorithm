@@ -7,17 +7,19 @@
     <script>
       function solution(n, m) {
         let answer = [];
-        let tmp = Array.from({ length: m }, () => 0);
+        let temp = Array.from({ length: m }, () => 0);
         function DFS(L, s) {
           if (L === m) {
-            answer.push(tmp.slice());
+            // console.log(temp);
+            answer.push(temp.slice());
           } else {
             for (let i = s; i <= n; i++) {
-              tmp[L] = i;
+              temp[L] = i;
               DFS(L + 1, i + 1);
             }
           }
         }
+        //1부터 시작
         DFS(0, 1);
         return answer;
       }

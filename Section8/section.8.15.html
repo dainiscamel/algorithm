@@ -9,10 +9,16 @@
         let answer = 0;
         function DFS(L, s, sum) {
           if (L === k) {
+            if (sum % m === 0) answer++;
           } else {
+            // D(n-1)에서 끝남
+            for (let i = s; i < n; i++) {
+              // L : level , s : 레벨마디 경우의 수, sum : 배수
+              DFS(L + 1, i + 1, sum + arr[i]);
+            }
           }
         }
-
+        //  arr[0]부터 시작
         DFS(0, 0, 0);
         return answer;
       }
