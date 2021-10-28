@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, arr) {
+        let answer = 0;
+        let graph = Array.from(Array(n + 1), () => Array(n + 1).fill(0));
+        //1번 인덱스 부터 시작.
+        let ch = Array.from({ length: n + 1 }, () => 0);
+
+        for (let [a, b] of arr) {
+          // 인접행렬 생성.
+          graph[a][b] = 1;
+        }
+        function DFS(v) {
+          if (v === n) answer++;
+          else {
+            // 1~n까지의 정점 순회
+            for (let i = 1; i <= n; i++) {
+              if (graph[v][i] === 1 && ch[i] === 0) {
+                ch[i] = 1;
+                DFS(i);
+                // n까지 순회를 마친 경우 체크 배열 0으로 초기화
+                ch[i] = 0;
+              }
+            }
+          }
+        }
+
+        //1에서 시작(=방문한 곳 표시)
+        ch[1] = 1;
+        DFS(1);
+        return answer;
+      }
+
+      let arr = [
+        [1, 2],
+        [1, 3],
+        [1, 4],
+        [2, 1],
+        [2, 3],
+        [2, 5],
+        [3, 4],
+        [4, 2],
+        [4, 5],
+      ];
+      console.log(solution(5, arr));
+    </script>
+  </body>
+</html>
