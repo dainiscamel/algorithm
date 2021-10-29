@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution() {
+        let answer = "";
+        let queue = [];
+        //루트노드
+        queue.push(1);
+        // 큐가 비어있을때 까지
+        while (queue.length) {
+          let v = queue.shift();
+          answer += v + " ";
+          // 연결된 노드 탐색
+          for (let i of [v * 2, v * 2 + 1]) {
+            if (i > 7) break;
+            queue.push(i);
+          }
+        }
+        return answer;
+      }
+
+      console.log(solution());
+    </script>
+  </body>
+</html>

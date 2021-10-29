@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(board) {
+        let answer = 0;
+        //좌 우 상 하
+        // (-1,0) (0,1)(1,0)(0,-1)
+        let dx = [-1, 0, 1, 0];
+        let dy = [0, 1, 0, -1];
+        function DFS(x, y) {
+          {
+            // 도착(6,6) 했을 떄 answer++
+            if (x === 6 && y === 6) {
+              answer++;
+            } else {
+              // 칸마다 4가지 방향으로 갈 수있다.
+              for (let i = 0; i < 4; i++) {
+                //x,y의 현재 위치
+                let cx = x + dx[i];
+                let cy = y + dy[i];
+                if (
+                  cx >= 0 &&
+                  cx <= 6 &&
+                  cy >= 0 &&
+                  cy <= 6 &&
+                  board[cx][cy] === 0
+                ) {
+                  // 왓던길 체크
+                  board[cx][cy] = 1;
+                  DFS(cx, cy);
+                  board[cx][cy] = 0;
+                }
+              }
+            }
+          }
+        }
+        board[0][0] = 1;
+        DFS(0, 0);
+        return answer;
+      }
+
+      let arr = [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 1, 1, 1, 1, 1, 0],
+        [0, 0, 0, 1, 0, 0, 0],
+        [1, 1, 0, 1, 0, 1, 1],
+        [1, 1, 0, 0, 0, 0, 1],
+        [1, 1, 0, 1, 1, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0],
+      ];
+
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
