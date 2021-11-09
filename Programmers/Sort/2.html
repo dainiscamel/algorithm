@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>가장 큰 수</title>
+  </head>
+  <body>
+    <script>
+      function solution(numbers) {
+        // 모든 number들을 string으로 바꾼다
+        //  문자열을 그대로 연결한 수(b+a) - 바꿔 연결한 수(a+b)가 양수이면
+        // sort에서 b가 앞에 있는 숫자고 a가 뒤에 있는 숫자를 의미
+        // var answer = "";
+        // answer = numbers
+        //   .map((c) => c + "")
+        //   .sort((a, b) => b + a - (a + b))
+        //   .join("");
+
+        // return answer[0] === "0" ? "0" : answer;
+
+        // 다른풀이
+        // 각 배열에 해당하는 숫자를 4번 반복하여 4자리숫자로 만든 후 비교
+        if (numbers.reduce((a, b) => a + b) === 0) {
+          return "0";
+        } else {
+          let answer = numbers.sort((i, j) => {
+            console.log(
+              String(j).repeat(4).slice(0, 4),
+              String(i).repeat(4).slice(0, 4)
+            );
+            return (
+              String(j).repeat(4).slice(0, 4) - String(i).repeat(4).slice(0, 4)
+            );
+          });
+
+          let result = answer.map((s) => String(s)).join("");
+          return result;
+        }
+      }
+      arr = [6, 10, 2];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
